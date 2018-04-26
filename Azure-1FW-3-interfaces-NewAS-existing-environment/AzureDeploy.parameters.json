@@ -1,0 +1,175 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {    
+    "vmName": {
+       "type": "string",
+       "metadata": {
+          "description": "Name of VM-Series FW in the Azure portal"
+       },
+       "defaultValue": "azuse2vfw04"
+    },
+    "storageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the existing storage account used to store the VM's disks"
+      },
+	"defaultValue" : "salrsuse2tcccpaloalto002"
+    },
+    "storageAccountExistingRG": {
+       "type": "string",
+       "defaultValue" : "rg-tccc-sharedsvc-paloalto",
+       "metadata": {
+          "description": "Storage Accounts Resource Group location."
+       }
+    },
+    "newfwAvSet": {
+    	"type": "string",
+        "defaultValue" : "AS-USE2-TCCC-SHAREDSVC-PALOALTO",
+    		"metadata": {
+    			"description": "Name of your new Availability Set"
+    		}    
+    },
+    "vmSize": {
+       "type": "string",
+       "allowedValues": [
+          "Standard_D3",
+          "Standard_D4",
+          "Standard_D3_v2",
+          "Standard_D4_v2",
+          "Standard_A4",
+          "Standard_DS3_v2",
+	     "Standard_DS4_v2",
+          "Standard_DS4_v3"
+       ],
+       "metadata": {
+          "description": "Azure VM size for VM-Series"
+       },
+       "defaultValue": "Standard_DS4_v3"
+    },
+    "virtualNetworkName": { 
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Virtual Network (VNET)"
+      },
+      "defaultValue": "vnet-use2-tccc-sharedsvc"
+    },
+    "virtualNetworkAddressPrefix": {
+      "type": "string",
+      "defaultValue": "10.115.0.0/22",
+      "metadata": {
+        "description": "Virtual network address CIDR"
+      }
+    },
+    "virtualNetworkExistingRGName": {
+      "type": "string",
+      "defaultValue": "rg-use2-tccc-sharedsvc-net",
+      "metadata": {
+        "description": "Name of resource group of existing VNET (if applicable)"
+      }
+    },
+    "subnet0Name": {
+      "type": "string",
+      "defaultValue": "snet-use2-tccc-sec-mgmt",
+      "metadata": {
+        "description": "Subnet for Management"
+      }
+    },
+    "subnet1Name": {
+      "type": "string",
+      "defaultValue": "snet-use2-tccc-sec-untrust",
+      "metadata": {
+        "description": "Subnet for Untrust"
+      }
+    },
+    "subnet2Name": {
+      "type": "string",
+      "defaultValue": "Trust",
+      "metadata": {
+        "description": "snet-use2-tccc-sec-trust"
+      }
+    },
+    "subnet0Prefix": {
+      "type": "string",
+      "defaultValue": "10.115.1.192/26",
+      "metadata": {
+        "description": "Mgmt subnet CIDR"
+      }
+    },
+    "subnet1Prefix": {
+      "type": "string",
+      "defaultValue": "10.115.1.64/26",
+      "metadata": {
+        "description": "Untrust subnet CIDR"
+      }
+    },
+    "subnet2Prefix": {
+      "type": "string",
+      "defaultValue": "10.115.1.128/26",
+      "metadata": {
+        "description": "Trust subnet CIDR"
+      }
+    },
+    "subnet0StartAddress": {
+      "type": "string",
+      "defaultValue": "10.115.1.199",
+      "metadata": {
+        "description": "Mgmt subnet start address"
+      }
+    },
+    "subnet1StartAddress": {
+      "type": "string",
+      "defaultValue": "10.115.1.71",
+      "metadata": {
+        "description": "Untrust subnet start address"
+      }
+    },
+    "subnet2StartAddress": {
+      "type": "string",
+      "defaultValue": "10.115.1.135",
+      "metadata": {
+        "description": "Trust subnet start address"
+      }
+    },
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "Username of the administrator account of VM-Series"
+      }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "defaultValue": "tcccadmin",
+      "metadata": {
+        "description": "Password for the administrator account of VM-Series"
+      }
+    },
+    "publicIPAddressName": {
+      "type": "string",
+	 "defaultValue": "azusevfw04-pip-old",
+      "metadata": {
+        "description": "Name of FW1 MGMT Public Address"
+      }
+    },
+    "imageVersion": {
+      "type": "string",
+      "metadata": {
+        "description": "PAN OS Version"
+      }
+    },
+    "imageSku": {
+      "type": "string",
+      "metadata": {
+        "description": "Firewall License Model"
+      }
+    },
+    "nsgName": {
+      "type": "string",
+      "defaultValue": "nsg-use2-tccc-sharedsvcs-paloalto-mgmt",
+      "metadata": {
+        "description": "Name of existing Network Security Group for MGMT FW interface"
+      }
+    }
+        
+  }
+}  
